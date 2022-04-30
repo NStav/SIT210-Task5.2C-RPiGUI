@@ -1,0 +1,50 @@
+from tkinter import *
+import tkinter.font
+from gpiozero import LED
+import RPi.GPIO
+RPi.GPIO.setmode(RPi.GPIO.BCM)
+
+led = LED(14)
+led2 = LED(15)
+led3 = LED(3)
+
+win = Tk()
+win.title("LED Toggler")
+myFont = tkinter.font.Font(family = 'Helvetica', size = 12, weight = "bold")
+
+#button functions
+def ledToggle():
+    if led.is_lit:
+        led.off()
+        ledButton["text"] = "Turn Red LED on"
+    else:
+        led.on()
+        led2.off()
+        led3.off()
+        ledButton["text"] = "Turn Red LED off"
+        ledButton2["text"] = "Turn Green LED on"
+        ledButton3["text"] = "Turn Blue LED on"
+
+def ledToggle2():
+    if led2.is_lit:
+        led2.off()
+        ledButton2["text"] = "Turn Green LED on"
+    else:
+        led2.on()
+        led.off()
+        led3.off()
+        ledButton2["text"] = "Turn Green LED off"
+        ledButton["text"] = "Turn Red LED on"
+        ledButton3["text"] = "Turn Blue LED on"
+
+def ledToggle3():
+    if led3.is_lit:
+        led3.off()
+        ledButton3["text"] = "Turn Blue LED on"
+    else:
+        led3.on()
+        led2.off()
+        led.off()
+        ledButton3["text"] = "Turn Blue LED off"
+        ledButton["text"] = "Turn Red LED on"
+        ledButton2["text"] = "Turn Green LED on"
